@@ -17,10 +17,13 @@ function getAllProjects() {
 	return db('projects');
 }
 function getAllTasks() {
-	return db('tasks')
-		.join('projects', 'tasks.id', 'projects.id')
-		.select('tasks.description as task_description', 'ta')
-		.where('project.id', task.id);
+	return db('projects')
+		.join('tasks', 'tasks.project_id', 'projects.id')
+		.select(
+			'tasks.*',
+			'projects.name as project_name',
+			'projects.description as project_description'
+		);
 }
 
 //get by single id of project to verify resource exists

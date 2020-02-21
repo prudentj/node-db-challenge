@@ -32,7 +32,7 @@ router.get('/tasks', (req, res) => {
 			res.json(task);
 		})
 		.catch(error => {
-			res.status(500).json({message: 'NO!!!!!'});
+			res.status(500).json({message: error});
 		});
 });
 
@@ -62,6 +62,7 @@ router.post('/resources', (req, res) => {
 
 router.post('/tasks', (req, res) => {
 	const newTask = req.body;
+	console.log('In tasks');
 	projectManager
 		.addTask(newTask)
 		.then(proj => res.status(201).json({message: 'It will be done!'}))
