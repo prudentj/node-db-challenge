@@ -19,7 +19,8 @@ function getAllProjects() {
 function getAllTasks() {
 	return db('tasks')
 		.join('projects', 'tasks.id', 'projects.id')
-		.select('tasks.description as task_description');
+		.select('tasks.description as task_description', 'ta')
+		.where('project.id', task.id);
 }
 
 //get by single id of project to verify resource exists
